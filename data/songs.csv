@@ -9,3 +9,13 @@ id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
 8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22
 9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78
 10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35
+11,HUMBLE.,Kendrick Lamar,hip-hop,defiant,0.62,150,0.42,0.91,0.07
+12,No Scrubs,TLC,r&b,confident,0.61,96,0.63,0.79,0.15
+13,Clair de Lune,Claude Debussy,classical,melancholic,0.08,54,0.32,0.19,0.99
+14,Take Me Home Country Roads,John Denver,country,nostalgic,0.55,80,0.88,0.58,0.72
+15,Master of Puppets,Metallica,metal,angry,0.97,212,0.30,0.40,0.03
+16,The Thrill Is Gone,B.B. King,blues,sad,0.35,76,0.22,0.45,0.62
+17,No Woman No Cry,Bob Marley,reggae,hopeful,0.45,73,0.55,0.68,0.55
+18,Despacito,Luis Fonsi,latin,romantic,0.81,89,0.82,0.88,0.25
+19,The Sound of Silence,Simon & Garfunkel,folk,melancholic,0.22,104,0.25,0.38,0.85
+20,Strobe,deadmau5,electronic,euphoric,0.73,128,0.68,0.76,0.04

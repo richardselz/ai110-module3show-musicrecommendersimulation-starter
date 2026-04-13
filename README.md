@@ -22,11 +22,15 @@ Explain your design in plain language.
 Some prompts to answer:
 
 - What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
+  - The music recommender will use the following attributes:
+    - `energy, tempo_bpm, valence, danceability, acousticness`
 - What information does your `UserProfile` store
+  - At this current step I have not yet gone through what the `UserProfile` will save/store. This will be re-visited later in the assignment.
 - How does your `Recommender` compute a score for each song
+  - The recommender computes a score 40% based on genre, 25% based on mood match, 20% based on energy proximity, and 15% on acousticness preference match.
 - How do you choose which songs to recommend
-
+  - The system will choose whichever song has the highest score and in case of a tie it will be randomized. 
+  
 You can include a simple diagram or bullet list if helpful.
 
 ---
