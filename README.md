@@ -76,6 +76,33 @@ You can add more tests in `tests/test_recommender.py`.
 ![Second iteration of output layout with scoring](screenshots/second_output.png)
 ## Final Output Layout
 ![Final iteration of output layout with scoring](screenshots/final_output.png)
+
+---
+
+## User Profile Runs
+
+### Standard Profiles
+
+#### High-Energy Pop
+![High-Energy Pop recommendations](screenshots/high-energy_pop.png)
+
+#### Chill Lofi
+![Chill Lofi recommendations](screenshots/chill_lofi.png)
+
+#### Deep Intense Rock
+![Deep Intense Rock recommendations](screenshots/deep_intense_rock.png)
+
+### Adversarial / Edge Case Profiles
+
+#### Genre Not in Catalog (Country)
+![Genre not in catalog — country](screenshots/country.png)
+
+#### Conflicting Preferences (Ambient + Intense + High Energy)
+![Conflicting preferences](screenshots/ambient_intense_high-energy.png)
+
+#### All Midrange
+![All midrange preferences](screenshots/all_midrange.png)
+
 ---
 
 ## Experiments You Tried
