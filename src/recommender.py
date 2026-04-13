@@ -46,15 +46,7 @@ class Recommender:
         return "Explanation placeholder"
 
 def load_songs(csv_path: str) -> List[Dict]:
-    """
-    Loads songs from a CSV file and returns them as a list of dicts.
-    Required by src/main.py
-
-    Numeric fields are cast to their appropriate types:
-      - id         → int
-      - tempo_bpm  → int
-      - energy, valence, danceability, acousticness → float
-    """
+    """Read a songs CSV and return a list of dicts with numeric fields cast to int or float."""
     import csv
 
     songs = []
@@ -72,20 +64,7 @@ def load_songs(csv_path: str) -> List[Dict]:
     return songs
 
 def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
-    """
-    Scores a single song against user preferences.
-    Required by recommend_songs() and src/main.py
-
-    Scoring weights:
-      - Genre match      40%  (binary: full 0.40 or nothing)
-      - Mood match       25%  (binary: full 0.25 or nothing)
-      - Energy proximity 20%  (1 - abs(song.energy - target_energy)) * 0.20
-      - Acousticness fit 15%  (song.acousticness if likes_acoustic else 1 - song.acousticness) * 0.15
-
-    Returns: (total_score, reasons)
-      - total_score: float in [0.0, 1.0]
-      - reasons: list of strings describing each signal that contributed
-    """
+    """Score a song against user preferences using weighted genre, mood, energy, and acousticness signals."""
     score = 0.0
     reasons = []
 
@@ -118,13 +97,7 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     return score, reasons
 
 def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
-    """
-    Scores every song, ranks them highest to lowest, and returns the top k.
-    Required by src/main.py
-
-    Returns a list of (song, score, explanation) tuples where explanation
-    is a human-readable summary of all signals that contributed to the score.
-    """
+    """Score all songs, rank highest to lowest, and return the top k as (song, score, explanation) tuples."""
     scored = [
         (song, *score_song(user_prefs, song))
         for song in songs
