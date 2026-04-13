@@ -93,34 +93,44 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     if song["genre"] == user_prefs.get("genre", ""):
         contribution = 0.40
         score += contribution
-        reasons.append(f"genre match (+{contribution:.2f})")
+        reasons.append(f"genre match (100% match → +{contribution * 100:.1f}% of score)")
 
     # Mood match — 25% weight
     if song["mood"] == user_prefs.get("mood", ""):
         contribution = 0.25
         score += contribution
-        reasons.append(f"mood match (+{contribution:.2f})")
+        reasons.append(f"mood match (100% match → +{contribution * 100:.1f}% of score)")
 
     # Energy proximity — 20% weight
     target_energy = user_prefs.get("energy", 0.5)
-    energy_contribution = (1.0 - abs(song["energy"] - target_energy)) * 0.20
+    energy_raw = 1.0 - abs(song["energy"] - target_energy)
+    energy_contribution = energy_raw * 0.20
     score += energy_contribution
-    reasons.append(f"energy proximity (+{energy_contribution:.2f})")
+    reasons.append(f"energy proximity ({energy_raw * 100:.1f}% match → +{energy_contribution * 100:.1f}% of score)")
 
     # Acousticness fit — 15% weight
     likes_acoustic = user_prefs.get("likes_acoustic", False)
     acoustic_raw = song["acousticness"] if likes_acoustic else (1.0 - song["acousticness"])
     acoustic_contribution = acoustic_raw * 0.15
     score += acoustic_contribution
-    reasons.append(f"acousticness fit (+{acoustic_contribution:.2f})")
+    reasons.append(f"acousticness fit ({acoustic_raw * 100:.1f}% match → +{acoustic_contribution * 100:.1f}% of score)")
 
     return score, reasons
 
 def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
     """
-    Functional implementation of the recommendation logic.
+    Scores every song, ranks them highest to lowest, and returns the top k.
     Required by src/main.py
+
+    Returns a list of (song, score, explanation) tuples where explanation
+    is a human-readable summary of all signals that contributed to the score.
     """
-    # TODO: Implement scoring and ranking logic
-    # Expected return format: (song_dict, score, explanation)
-    return []
+    scored = [
+        (song, *score_song(user_prefs, song))
+        for song in songs
+    ]
+    ranked = sorted(scored, key=lambda x: x[1], reverse=True)
+    return [
+        (song, score, "; ".join(reasons))
+        for song, score, reasons in ranked[:k]
+    ]

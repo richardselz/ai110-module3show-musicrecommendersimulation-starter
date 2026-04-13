@@ -33,7 +33,7 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
-![The initial data flow of the music recommender.](initial-data-flow.png)
+![The initial data flow of the music recommender.](screenshots/initial-data-flow.png)
 - Image was produced by mermaid.live
 ---
 
@@ -70,6 +70,12 @@ pytest
 
 You can add more tests in `tests/test_recommender.py`.
 
+## Initial Output Layout
+![Initial run after scoring](screenshots/initial_output.png)
+## Second Iteration of Output Layout
+![Second iteration of output layout with scoring](screenshots/second_output.png)
+## Final Output Layout
+![Final iteration of output layout with scoring](screenshots/final_output.png)
 ---
 
 ## Experiments You Tried
